@@ -1,0 +1,18 @@
+{
+  "name": "kinojs",
+  "version": "1.0.0",
+  "description": "an easy, flexable, lightweight ai framework",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "lightweight",
+    "framework",
+    "neural",
+    "network"
+  ],
+  "author": "dopeycat",
+  "license": "SEE LICENSE IN LICENSE"
+}
