@@ -1,7 +1,3 @@
-const sum = (nums) => {
-    return nums.reduce((total, n) => total + Number(n), 0);
-}
-
 const dot = (vectorA, vectorB) => {
     return vectorA.reduce((acc, current, index) => {
         return acc + current * vectorB[index];
