@@ -58,3 +58,5 @@ let ai = {
         }
     }
 }
+
+module.exports = ai;
