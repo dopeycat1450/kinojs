@@ -1,8 +1,21 @@
+const sortArray = (arr) => {
+    return arr.sort((a, b) => a - b);
+};
+
 const dot = (vectorA, vectorB) => {
+    if (!Array.isArray(vectorA) || !Array.isArray(vectorB)) {
+        throw new Error("Both inputs must be arrays");
+    }
+
+    if (vectorA.length !== vectorB.length) {
+        throw new Error("Vectors must be of the same length");
+    }
+    
     return vectorA.reduce((acc, current, index) => {
         return acc + current * vectorB[index];
     }, 0);
 }
+
 
 let ai = {
     layers: [],
@@ -36,7 +49,7 @@ let ai = {
     select: function(kino) {
         if(kino == null) {
             let largest = 0;
-            for(let i1 = 0; i1 < this.kinos.length; i1++) {
+            for(let i1 = 1; i1 < this.kinos.length; i1++) {
                 if(this.kinos[i1].number > this.kinos[largest].number) {
                     largest = i1;
                 }
@@ -46,10 +59,14 @@ let ai = {
         }
     },
     train: function(split) {
-        let largest = 1;
-        for(let i1 = 1; i1 < this.kinos.length; i1++) {
-            if(this.kinos[i1].number > this.kinos[largest].number) {
-                largest = i1;
+        let largest = [];
+        for(let i1 = 0; i1 < this.kinos.length; i1++) {
+            largest.push(this.kinos[i1].number);
+        }
+        largest = sortArray(largest);
+        if(split < largest.length) {
+            for(let i1 = 0; i1 < largest.length - split; i1++) {
+                largest.shift();
             }
         }
     }
