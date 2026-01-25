@@ -12,11 +12,11 @@ let ai = {
             this.layers.push([]);
             this.layers[i1].push([]);
             if(i1 !== 0) {
-                for(let i2 = 1; i2 < form[i1]; i2++) {
-                this.layers[i1].push({weights: [], bias: 0});
-                for(let i3 = 0; i3 < form[i1 - 1]; i3++) {
-                    this.layers[i1][i2].weights.push(0);
-                }
+                for(let i2 = 1; i2 < form[i1] + 1; i2++) {
+                    this.layers[i1].push({weights: [], bias: 0});
+                    for(let i3 = 0; i3 < form[i1 - 1]; i3++) {
+                        this.layers[i1][i2].weights.push(0);
+                    }
                 }
             }
         }

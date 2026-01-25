@@ -1,3 +1,5 @@
-let i = [0, 0, 1];
+let ai = require('./main.js');
 
-console.log(i[2]);
+ai.init([3, 4, 4]);
+
+console.log(ai.layers);
