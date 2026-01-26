@@ -14,7 +14,7 @@ const randomInt = (max) => {
   return Math.floor(Math.random() * max);
 }
 
-let ai = {
+export default {
     layers: [],
     kinos: [], // k-ee-n-ow-s
     init: function(form) {
@@ -41,7 +41,7 @@ let ai = {
         return this.layers[this.layers.length][0];
     },
     sortKinos: function() {
-        this.kinos.sort((a, b) => b.number - a.number)
+        this.kinos.sort((a, b) => b.number - a.number);
     },
     start: function(number, split) {
         this.kinos = [{ai: this.layers, number: number}]; // if number is less than 1 the ai dies, the reward is added to number every time train is called, an ai splits if it is within the top split ais, if it isn't then it mutates
@@ -63,8 +63,8 @@ let ai = {
             }
         }
         // mutate kinos
-        for(let i1 = 0; i1 < this.kinos.length - 1; i1++) {
-            for(let i1 = 0; i1 < this.kinos.length - 1; i1++) {
+        for(let i1 = 0; i1 < this.kinos.length; i1++) {
+            for(let i1 = 0; i1 < this.kinos.length; i1++) {
                 const r1 = randomInt(this.kinos[i1].ai.length);
                 const r2 = randomInt(this.kinos[i1].ai[r1].length);
                 const r3 = randomInt(2);
@@ -85,5 +85,3 @@ let ai = {
         }
     }
 }
-
-module.exports = ai;
