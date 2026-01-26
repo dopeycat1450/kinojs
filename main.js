@@ -1,7 +1,3 @@
-const sortArray = (arr) => {
-    return arr.sort((a, b) => a - b);
-};
-
 const dot = (vectorA, vectorB) => {
     if (!Array.isArray(vectorA) || !Array.isArray(vectorB)) {
         throw new Error("Both inputs must be arrays");
@@ -43,32 +39,23 @@ let ai = {
         }
         return this.layers[this.layers.length][0];
     },
+    sortKinos: function() {
+        this.kinos.sort((a, b) => b.number - a.number)
+    },
     start: function(number, split) {
         this.kinos = [{ai: this.layers, number: number}]; // if number is less than 1 the ai dies, the reward is added to number every time train is called, an ai splits if it is within the top split ais, if it isn't then it mutates
     },
     select: function(kino) {
-        if(kino == null) {
-            let largest = 0;
-            for(let i1 = 1; i1 < this.kinos.length; i1++) {
-                if(this.kinos[i1].number > this.kinos[largest].number) {
-                    largest = i1;
-                }
-            }
+        if(kino == undefined) {
+            this.sortKinos();
+            this.layers = this.kinos[0].ai;
         } else {
             this.layers = this.kinos[kino].ai;
         }
     },
     train: function(split) {
-        let largest = [];
-        for(let i1 = 0; i1 < this.kinos.length; i1++) {
-            largest.push(this.kinos[i1].number);
-        }
-        largest = sortArray(largest);
-        if(split < largest.length) {
-            for(let i1 = 0; i1 < largest.length - split; i1++) {
-                largest.shift();
-            }
-        }
+        this.sortKinos();
+
     }
 }
 
