@@ -2,16 +2,17 @@ const dot = (vectorA, vectorB) => {
     if (!Array.isArray(vectorA) || !Array.isArray(vectorB)) {
         throw new Error("Both inputs must be arrays");
     }
-
     if (vectorA.length !== vectorB.length) {
         throw new Error("Vectors must be of the same length");
     }
-    
     return vectorA.reduce((acc, current, index) => {
         return acc + current * vectorB[index];
     }, 0);
 }
 
+const randomInt = (max) => {
+  return Math.floor(Math.random() * max);
+}
 
 let ai = {
     layers: [],
@@ -53,9 +54,35 @@ let ai = {
             this.layers = this.kinos[kino].ai;
         }
     },
-    train: function(split) {
+    train: function(split, intensity, unstability) {
         this.sortKinos();
+        // split kinos
+        for(let i1 = 0; i1 < split - 1; i1++) {
+            for(let i2 = 0; i2 < intensity; i2++) {
+                this.kinos.push(this.kinos[i1]);
+            }
+        }
+        // mutate kinos
+        for(let i1 = 0; i1 < this.kinos.length - 1; i1++) {
+            for(let i1 = 0; i1 < this.kinos.length - 1; i1++) {
+                const r1 = randomInt(this.kinos[i1].ai.length);
+                const r2 = randomInt(this.kinos[i1].ai[r1].length);
+                const r3 = randomInt(2);
+                const r4 = randomInt(this.kinos[i1].ai[r1].weights.length);
+                const r5 = randomInt(2);
+                let r6 = undefined;
 
+                if (r5 == 0) {
+                    r6 = Math.random();
+                } else {
+                    r6 = 0 - Math.random();
+                }
+
+                if (r3 == 0) {
+                    this.kinos[i1].ai[r1][r2].weights[r4] += r6;
+                }
+            }
+        }
     }
 }
 
