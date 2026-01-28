@@ -16,7 +16,7 @@ const randomInt = (max) => {
 
 export default {
     layers: [],
-    kinos: [{ai: null, number: 0}],
+    kinos: [{ai: [], number: 0}],
     init: function(form) {
         for(let i1 = 0; i1 < form.length; i1++) {
             this.kinos[0].ai.push([]); // push layers
