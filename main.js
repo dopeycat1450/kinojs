@@ -16,16 +16,16 @@ const randomInt = (max) => {
 
 export default {
     layers: [],
-    kinos: [], // k-ee-n-ow-s
+    kinos: [{ai, number: 0}],
     init: function(form) {
         for(let i1 = 0; i1 < form.length; i1++) {
-            this.layers.push([]);
-            this.layers[i1].push([]);
-            if(i1 !== 0) {
+            this.kinos[0].ai.push([]); // push layers
+            this.kinos[0].ai[i1].push([]); // push output array
+            if(i1 !== 0) { // don't need this in input layer
                 for(let i2 = 1; i2 < form[i1] + 1; i2++) {
-                    this.layers[i1].push({weights: [], bias: 0});
+                    this.kinos[0].ai[i1].push({weights: [], bias: 0});
                     for(let i3 = 0; i3 < form[i1 - 1]; i3++) {
-                        this.layers[i1][i2].weights.push(0);
+                        this.kinos[0].ai[i1][i2].weights.push(0);
                     }
                 }
             }
