@@ -43,17 +43,6 @@ export default {
     sortKinos: function() {
         this.kinos.sort((a, b) => b.number - a.number);
     },
-    start: function(number, split) {
-        this.kinos = [{ai: this.layers, number: number}]; // if number is less than 1 the ai dies, the reward is added to number every time train is called, an ai splits if it is within the top split ais, if it isn't then it mutates
-    },
-    select: function(kino) {
-        if(kino == undefined) {
-            this.sortKinos();
-            this.layers = this.kinos[0].ai;
-        } else {
-            this.layers = this.kinos[kino].ai;
-        }
-    },
     train: function(split, intensity, unstability) {
         this.sortKinos();
         // split kinos
