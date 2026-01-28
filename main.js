@@ -31,14 +31,14 @@ export default {
             }
         }
     },
-    run: function(input) {
-        this.layers[0][0] = input;
-        for(let i1 = 1; i1 < this.layers.length; i1++) {
-            for(let i2 = 1; i2 < this.layers[i1].length; i2++) {
-                this.layers[i1][0] = dot(this.layers[i1 - 1][0], this.layers[i1][i2].weights);
+    run: function(input, kino) {
+        this.kinos[0].ai[0][0] = input;
+        for(let i1 = 1; i1 < this.kinos[kino].ai.length; i1++) {
+            for(let i2 = 1; i2 < this.kinos[kino].ai[i1].length; i2++) {
+                this.kinos[kino].ai[i1][0] = dot(this.kinos[kino].ai[i1 - 1][0], this.kinos[kino].ai[i1][i2].weights);
             }
         }
-        return this.layers[this.layers.length][0];
+        return this.kinos[kino].ai[this.kinos[kino].ai.length][0];
     },
     sortKinos: function() {
         this.kinos.sort((a, b) => b.number - a.number);
