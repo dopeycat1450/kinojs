@@ -16,7 +16,7 @@ const randomInt = (max) => {
 
 export default {
     kinos: [{ai: [], number: 0}],
-    init: function(form) {
+    init: (form) => {
         for(let i1 = 0; i1 < form.length; i1++) {
             this.kinos[0].ai.push([]); // push layers
             this.kinos[0].ai[i1].push([]); // push output array
@@ -32,7 +32,7 @@ export default {
                 }
         }
     },
-    run: function(input, kino) {
+    run: (input, kino) => {
         this.kinos[0].ai[0][0] = input;
         for(let i1 = 1; i1 < this.kinos[kino].ai.length; i1++) {
 
@@ -43,10 +43,10 @@ export default {
         }
         return this.kinos[kino].ai[this.kinos[kino].ai.length][0];
     },
-    sortKinos: function() {
+    sortKinos: () => {
         this.kinos.sort((a, b) => b.number - a.number);
     },
-    train: function(split, intensity, unstability) {
+    train: (split, intensity, unstability) => {
         this.sortKinos();
         // split kinos
         for(let i1 = 0; i1 < split - 1; i1++) {
@@ -55,28 +55,30 @@ export default {
             }
         }
         // mutate kinos
-        for(let i1 = 0; i1 < this.kinos.length; i1++) {
-            for(let i1 = 0; i1 < unstability; i1++) {
-                const r1 = randomInt(this.kinos[i1].ai.length);
-                const r2 = randomInt(this.kinos[i1].ai[r1].length);
-                const r3 = randomInt(2);
-                const r4 = randomInt(this.kinos[i1].ai[r1].weights.length);
-                const r5 = randomInt(2);
-                let r6 = undefined;
+        if(unstability != 0) {
+            for(let i1 = 0; i1 < this.kinos.length; i1++) {
+                for(let i1 = 0; i1 < unstability; i1++) {
+                    const r1 = randomInt(this.kinos[i1].ai.length);
+                    const r2 = randomInt(this.kinos[i1].ai[r1].length);
+                    const r3 = randomInt(2);
+                    const r4 = randomInt(this.kinos[i1].ai[r1].weights.length);
+                    const r5 = randomInt(2);
+                    let r6 = undefined;
 
-                if (r5 == 0) {
-                    r6 = Math.random();
-                } else {
-                    r6 = 0 - Math.random();
-                }
+                    if (r5 == 0) {
+                        r6 = Math.random();
+                    } else {
+                        r6 = 0 - Math.random();
+                    }
 
-                if (r3 == 0) {
-                    this.kinos[i1].ai[r1][r2].weights[r4] += r6;
+                    if (r3 == 0) {
+                        this.kinos[i1].ai[r1][r2].weights[r4] += r6;
+                    }
                 }
             }
         }
     },
-    reward: function(kino, amount) {
+    reward: (kino, amount) => {
         this.kinos[kino].number += amount;
     }
 }
