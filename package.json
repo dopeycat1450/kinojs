@@ -14,5 +14,6 @@
     "network"
   ],
   "author": "dopeycat",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "type": "module"
 }
