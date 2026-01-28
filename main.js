@@ -64,7 +64,7 @@ export default {
         }
         // mutate kinos
         for(let i1 = 0; i1 < this.kinos.length; i1++) {
-            for(let i1 = 0; i1 < this.kinos.length; i1++) {
+            for(let i1 = 0; i1 < unstability; i1++) {
                 const r1 = randomInt(this.kinos[i1].ai.length);
                 const r2 = randomInt(this.kinos[i1].ai[r1].length);
                 const r3 = randomInt(2);
@@ -83,5 +83,8 @@ export default {
                 }
             }
         }
+    },
+    reward: function(kino, amount) {
+        this.kinos[kino].number += amount;
     }
 }
