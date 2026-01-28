@@ -15,7 +15,6 @@ const randomInt = (max) => {
 }
 
 export default {
-    layers: [],
     kinos: [{ai: [], number: 0}],
     init: function(form) {
         for(let i1 = 0; i1 < form.length; i1++) {
