@@ -34,6 +34,7 @@ export default {
                     }
                 }
         }
+        return kinos[0].ai;
     },
     run: (input, kino) => {
         kinos[0].ai[0][0] = input;
