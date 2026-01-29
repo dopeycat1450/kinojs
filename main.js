@@ -14,11 +14,12 @@ const randomInt = (max) => {
   return Math.floor(Math.random() * max);
 }
 
-const kinos = [{ai: [], number: 0}];
+const kinos = [];
 
 export default {
     kinos: kinos,
     init: (form) => {
+        kinos.unshift({ai: [], number: 0});
         for(let i1 = 0; i1 < form.length; i1++) {
             kinos[0].ai.push([]); // push layers
             kinos[0].ai[i1].push([]); // push output array
