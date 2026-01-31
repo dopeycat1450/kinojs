@@ -17,13 +17,12 @@ const randomuint = (max) => {
 }
 
 const randomFloat = (max) => {
-  const randomValue = Math.random() * (max * 2) - max; // Generates a value between -max and max
-  return randomValue; // Returns the float value directly
+  return Math.random() * (max * 2) - max; // Generates a value between -max and max
 };
 
 // items in the library
 
-const kinos = [];
+let kinos = [];
 
 const sortKinos = () => {
     kinos.sort((a, b) => b.number - a.number);
@@ -54,12 +53,13 @@ export default {
         kinos[0].ai[0][0] = input;
         for(let i1 = 1; i1 < kinos[kino].ai.length; i1++) {
 
+            kinos[kino].ai[i1][0] = []; // reset layer output
             for(let i2 = 1; i2 < kinos[kino].ai[i1].length; i2++) {
                 
-                kinos[kino].ai[i1][0] = dot(kinos[kino].ai[i1 - 1][0], kinos[kino].ai[i1][i2].weights) + kinos[kino].ai[i1][i2].bias;
+                kinos[kino].ai[i1][0].push(dot(kinos[kino].ai[i1 - 1][0], kinos[kino].ai[i1][i2].weights) + kinos[kino].ai[i1][i2].bias); // push neuron output to layer output
             }
         }
-        return kinos[kino].ai[kinos[kino].ai.length][0];
+        return kinos[kino].ai[kinos[kino].ai.length - 1][0];
     },
     train: (split, intensity, unstability, change) => {
         sortKinos();
@@ -70,20 +70,18 @@ export default {
             }
         }
         // mutate kinos
-        if(unstability != 0) {
-            let r1;
-            for(let i1 = 0; i1 < kinos.length; i1++) {
-                for(let i1 = 0; i1 < unstability; i1++) {
-                    r1 = randomuint(kinos[i1].ai.length); // other random values use this value, cannot put into code directly
-
-                    if(randomuint(1) == 0) {
-                        kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].weights[randomuint(kinos[i1].ai[r1].weights.length)] += randomFloat(change);
-                    } else {
-                        kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].bias += randomFloat(change);
-                    }
+        let r1;
+        for(let i1 = 0; i1 < kinos.length; i1++) {
+            for(let i1 = 0; i1 < unstability; i1++) {
+                r1 = randomuint(kinos[i1].ai.length); // other random values use this value, cannot put into code directly
+                if(randomuint(1) == 0) {
+                    kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].weights[randomuint(kinos[i1].ai[r1].weights.length)] += randomFloat(change);
+                } else {
+                    kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].bias += randomFloat(change);
                 }
             }
         }
+
     },
     reward: (kino, amount) => {
         kinos[kino].number += amount;
