@@ -57,7 +57,7 @@ export default {
         }
         return kinos[kino].ai[kinos[kino].ai.length][0];
     },
-    train: (split, intensity, unstability) => {
+    train: (split, intensity, unstability, change) => {
         sortKinos();
         // split kinos
         for(let i1 = 0; i1 < split - 1; i1++) {
@@ -70,12 +70,12 @@ export default {
             let r1;
             for(let i1 = 0; i1 < kinos.length; i1++) {
                 for(let i1 = 0; i1 < unstability; i1++) {
-                    r1 = randomuint(kinos[i1].ai.length);
+                    r1 = randomuint(kinos[i1].ai.length); // other random values use this value, cannot put into code directly
 
                     if(randomuint(1) == 0) {
-                        kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].weights[randomuint(kinos[i1].ai[r1].weights.length)] += randomFloat(1);
+                        kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].weights[randomuint(kinos[i1].ai[r1].weights.length)] += randomFloat(change);
                     } else {
-                        kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].bias += randomFloat(1);
+                        kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].bias += randomFloat(change);
                     }
                 }
             }
