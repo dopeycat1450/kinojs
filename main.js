@@ -1,20 +1,20 @@
 // minidependencies
 
 const dot = (vectorA, vectorB) => {
-    if (!Array.isArray(vectorA) || !Array.isArray(vectorB)) {
+    if(!Array.isArray(vectorA) || !Array.isArray(vectorB)) {
         throw new Error("Both inputs must be arrays");
     }
-    if (vectorA.length !== vectorB.length) {
+    if(vectorA.length !== vectorB.length) {
         throw new Error("Vectors must be of the same length");
     }
     return vectorA.reduce((acc, current, index) => {
         return acc + current * vectorB[index];
     }, 0);
-}
+};
 
 const randomuint = (max) => {
   return Math.round(Math.random() * max);
-}
+};
 
 const randomFloat = (max) => {
   return Math.random() * (max * 2) - max; // Generates a value between -max and max
@@ -61,13 +61,11 @@ export default {
         }
         return kinos[kino].ai[kinos[kino].ai.length - 1][0];
     },
-    train: (split, intensity, unstability, change) => {
+    train: (split, unstability, change) => {
         sortKinos();
         // split kinos
-        for(let i1 = 0; i1 < split - 1; i1++) {
-            for(let i2 = 0; i2 < intensity; i2++) {
-                kinos.push(kinos[i1]);
-            }
+        for(let i1 = 0; i1 < split; i1++) {
+            kinos.push(kinos[i1]);
         }
         // mutate kinos
         let r1;
@@ -92,4 +90,4 @@ export default {
             kinos.pop();
         }
     }
-}
+};
