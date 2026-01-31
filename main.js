@@ -67,9 +67,10 @@ export default {
         }
         // mutate kinos
         if(unstability != 0) {
+            let r1;
             for(let i1 = 0; i1 < kinos.length; i1++) {
                 for(let i1 = 0; i1 < unstability; i1++) {
-                    const r1 = randomuint(kinos[i1].ai.length);
+                    r1 = randomuint(kinos[i1].ai.length);
 
                     if(randomuint(1) == 0) {
                         kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].weights[randomuint(kinos[i1].ai[r1].weights.length)] += randomFloat(1);
