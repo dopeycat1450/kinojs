@@ -10,9 +10,14 @@ const dot = (vectorA, vectorB) => {
     }, 0);
 }
 
-const randomInt = (max) => {
-  return Math.floor(Math.random() * max);
+const randomuint = (max) => {
+  return Math.round(Math.random() * max);
 }
+
+const randomFloat = (max) => {
+  const randomValue = Math.random() * (max * 2) - max; // Generates a value between -max and max
+  return randomValue; // Returns the float value directly
+};
 
 const kinos = [];
 
@@ -62,21 +67,12 @@ export default {
         if(unstability != 0) {
             for(let i1 = 0; i1 < kinos.length; i1++) {
                 for(let i1 = 0; i1 < unstability; i1++) {
-                    const r1 = randomInt(kinos[i1].ai.length);
-                    const r2 = randomInt(kinos[i1].ai[r1].length);
-                    const r3 = randomInt(2);
-                    const r4 = randomInt(kinos[i1].ai[r1].weights.length);
-                    const r5 = randomInt(2);
-                    let r6 = undefined;
-
-                    if (r5 == 0) {
-                        r6 = Math.random();
+                    const r1 = randomuint(kinos[i1].ai.length);
+                    
+                    if(randomuint(1) == 0) {
+                        kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].weights[randomuint(kinos[i1].ai[r1].weights.length)] += randomFloat(1);
                     } else {
-                        r6 = 0 - Math.random();
-                    }
-
-                    if (r3 == 0) {
-                        kinos[i1].ai[r1][r2].weights[r4] += r6;
+                        kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].bias += randomFloat(1);
                     }
                 }
             }
