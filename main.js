@@ -21,8 +21,13 @@ const randomFloat = (max) => {
 
 const kinos = [];
 
+const sortKinos = () => {
+    kinos.sort((a, b) => b.number - a.number);
+};
+
 export default {
-    kinos: kinos,
+    kinos,
+    sortKinos,
     init: (form) => {
         kinos.unshift({ai: [], number: 0});
         for(let i1 = 0; i1 < form.length; i1++) {
@@ -52,11 +57,8 @@ export default {
         }
         return kinos[kino].ai[kinos[kino].ai.length][0];
     },
-    sortKinos: () => {
-        kinos.sort((a, b) => b.number - a.number);
-    },
     train: (split, intensity, unstability) => {
-        this.sortKinos();
+        sortKinos();
         // split kinos
         for(let i1 = 0; i1 < split - 1; i1++) {
             for(let i2 = 0; i2 < intensity; i2++) {
@@ -68,7 +70,7 @@ export default {
             for(let i1 = 0; i1 < kinos.length; i1++) {
                 for(let i1 = 0; i1 < unstability; i1++) {
                     const r1 = randomuint(kinos[i1].ai.length);
-                    
+
                     if(randomuint(1) == 0) {
                         kinos[i1].ai[r1][randomuint(kinos[i1].ai[r1].length)].weights[randomuint(kinos[i1].ai[r1].weights.length)] += randomFloat(1);
                     } else {
