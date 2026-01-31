@@ -1,3 +1,5 @@
+// minidependencies
+
 const dot = (vectorA, vectorB) => {
     if (!Array.isArray(vectorA) || !Array.isArray(vectorB)) {
         throw new Error("Both inputs must be arrays");
@@ -18,6 +20,8 @@ const randomFloat = (max) => {
   const randomValue = Math.random() * (max * 2) - max; // Generates a value between -max and max
   return randomValue; // Returns the float value directly
 };
+
+// items in the library
 
 const kinos = [];
 
@@ -52,7 +56,7 @@ export default {
 
             for(let i2 = 1; i2 < kinos[kino].ai[i1].length; i2++) {
                 
-                kinos[kino].ai[i1][0] = dot(kinos[kino].ai[i1 - 1][0], kinos[kino].ai[i1][i2].weights);
+                kinos[kino].ai[i1][0] = dot(kinos[kino].ai[i1 - 1][0], kinos[kino].ai[i1][i2].weights) + kinos[kino].ai[i1][i2].bias;
             }
         }
         return kinos[kino].ai[kinos[kino].ai.length][0];
