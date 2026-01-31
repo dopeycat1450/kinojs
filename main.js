@@ -87,5 +87,11 @@ export default {
     },
     reward: (kino, amount) => {
         kinos[kino].number += amount;
+    },
+    reduce: (amount) => {
+        sortKinos();
+        for(let i1 = 0; i1 < amount; i1++) {
+            kinos.pop();
+        }
     }
 }
