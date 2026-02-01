@@ -53,7 +53,7 @@ export default {
         }
         return kinos[kino].ai[kinos[kino].ai.length - 1][0];
     },
-    train: (change, split, scale, unstability) => {
+    train: (change, split, scale, threshhold, unstability) => {
         // split kinos
         sortKinos();
         for(let i1 = 0; i1 < split; i1++) {
@@ -71,12 +71,13 @@ export default {
                 } else {
                     kinos[i2].ai[trainran[0]][trainran[1]].weights[trainran[2]] += change;
                 }
-
             }
         }
 
         // merge kinos
-
+        for(let i1 = 0; i1 < threshhold; i1++) {
+            
+        }
     },
     reward: (kino, amount) => {
         kinos[kino].number += amount;
