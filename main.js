@@ -4,11 +4,11 @@ const dot = (vectorA, vectorB) => {
     return vectorA.reduce((acc, current, index) => {
         return acc + current * vectorB[index];
     }, 0);
-};
+}
 
 const rani = (max) => {
   return Math.round(Math.random() * max);
-};
+}
 
 // items in the library
 
@@ -18,7 +18,7 @@ let trainran = [0, 0, 0];
 
 const sortKinos = () => {
     kinos.sort((a, b) => b.number - a.number);
-};
+}
 
 export default {
     kinos,
