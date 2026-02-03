@@ -73,11 +73,6 @@ export default {
                 }
             }
         }
-
-        // merge kinos
-        for(let i1 = 0; i1 < threshhold; i1++) {
-            
-        }
     },
     reward: (kino, amount) => {
         kinos[kino].number += amount;
