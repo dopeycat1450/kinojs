@@ -53,26 +53,8 @@ export default {
         }
         return kinos[kino].ai[kinos[kino].ai.length - 1][0];
     },
-    train: (change, split, scale, threshhold, unstability) => {
-        // split kinos
-        sortKinos();
-        for(let i1 = 0; i1 < split; i1++) {
-            kinos.push(kinos[i1]);
-        }
+    singleTrain: () => {
 
-        // mutate kinos
-        for(let i1 = 0; i1 < unstability; i1++) {
-            for(let i2 = 0; i2 < kinos.length; i2++) {
-                trainran[0] = rani(kinos[i2].ai.length - 1);
-                trainran[1] = Math.max(1, rani(kinos[i2].ai[trainran[0].length - 1]));
-                trainran[2] = rani(kinos[i2].ai[trainran[0]][trainran[1]].weights.length - 1);
-                if(rani(scale) == 0) {
-                    kinos[i2].ai[trainran[0]][trainran[1]].bias += change;
-                } else {
-                    kinos[i2].ai[trainran[0]][trainran[1]].weights[trainran[2]] += change;
-                }
-            }
-        }
     },
     reward: (kino, amount) => {
         kinos[kino].number += amount;
