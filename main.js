@@ -10,7 +10,7 @@ const dot = (vectorA, vectorB) => {
 
 let nn = [];
 
-let t = {posdir: true, rewa: 1, prevrewa: 0, layer: 1, neuron: 1, bweight: -1};
+let t = {posdir: true, rewa: 1, prevrewa: 0, layer: 1, neuron: 1, bweight: -1}; // not in the library
 
 export default {
     nn,
@@ -26,7 +26,7 @@ export default {
                 }
         }
     },
-    run: (input, kino) => {
+    run: (input) => {
         nn[0][0] = input;
         for(let i1 = 1; i1 < nn.length; i1++) {
 
