@@ -10,7 +10,7 @@ const dot = (vectorA, vectorB) => {
 
 let nn = [];
 
-let t = {posdir: true, rewa: 0, prevrewa: 0, layer: 1, neuron: 1, bweight: -1};
+let t = {posdir: true, rewa: 1, prevrewa: 0, layer: 1, neuron: 1, bweight: -1};
 
 export default {
     nn,
@@ -39,7 +39,10 @@ export default {
         }
         return nn[nn.length - 1][0];
     },
-    singleTrain: (amount) => {
+    train: (amount) => {
+        if(t.rewa < t.prevrewa) {
+            t.posdir = !t.posdir;
+        }
         let weigh;
         if(t.posdir == true) {
             weigh = amount;
@@ -53,6 +56,7 @@ export default {
         }
     },
     reward: (amount) => {
+        t.prevrewa = t.rewa;
         t.rewa = amount;
     }
 };
