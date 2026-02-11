@@ -25,7 +25,6 @@ export default {
                     }
                 }
         }
-        return nn;
     },
     run: (input, kino) => {
         nn[0][0] = input;
