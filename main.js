@@ -14,7 +14,7 @@ const rani = (max) => {
 
 let kinos = [];
 
-let trainran = [0, 0, 0];
+let t = {posdir: true, prevrewa: 0, layer: 1, neuron: 1, bweight: -1};
 
 const sortKinos = () => {
     kinos.sort((a, b) => b.number - a.number);
@@ -29,13 +29,9 @@ export default {
             kinos[0].ai.push([]); // push layers
             kinos[0].ai[i1].push([]); // push output array
                 for(let i2 = 1; i2 < form[i1] + 1; i2++) {
-                    if(i1 !== 0) {
-                        kinos[0].ai[i1].push({weights: [], bias: 0});
-                        for(let i3 = 0; i3 < form[i1 - 1]; i3++) {
-                            kinos[0].ai[i1][i2].weights.push(0);
-                        }
-                    } else {
-                        kinos[0].ai[i1].push(null);
+                    kinos[0].ai[i1].push({weights: [], bias: 0}); // push neurons
+                    for(let i3 = 0; i3 < form[i1 - 1]; i3++) {
+                        kinos[0].ai[i1][i2].weights.push(1); // push weights
                     }
                 }
         }
@@ -53,10 +49,20 @@ export default {
         }
         return kinos[kino].ai[kinos[kino].ai.length - 1][0];
     },
-    singleTrain: () => {
-
+    singleTrain: (kino, amount) => {
+        if(t.posdir == true) {
+            let weigh = amount;
+        } else {
+            let weigh = 0 - amount;
+        }
+        if(t.bweight = -1) {
+            kinos[kino].ai[t.layer][t.neuron].bias += weigh;
+        } else {
+            kinos[kino].ai[t.layer][t.neuron].weights[t.bweight] += weigh;
+        }
     },
     reward: (kino, amount) => {
+        t.prevrewa = amount;
         kinos[kino].number += amount;
     }
 };
