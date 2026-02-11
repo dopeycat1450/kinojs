@@ -29,7 +29,7 @@ export default {
     },
     run: (input, kino) => {
         nn[0][0] = input;
-        for(let i1 = 1; i1 < kino[kino].nn.length; i1++) {
+        for(let i1 = 1; i1 < nn.length; i1++) {
 
             nn[i1][0] = []; // reset layer output
             for(let i2 = 1; i2 < nn[i1].length; i2++) {
