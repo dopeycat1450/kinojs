@@ -15,15 +15,25 @@ let t = {posdir: true, rewa: 1, prevrewa: 0, layer: 1, neuron: 1, bweight: -1}; 
 export default {
     nn,
     init: (form) => {
-        for(let i1 = 0; i1 < form.length; i1++) {
+        // input layer
+        nn.push([]); // push layers
+        nn[0].push([]); // push output array
+        for(let i1 = 1; i1 < form[0] + 1; i1++) {
+            nn[0].push({weights: [], bias: 0}); // push neurons
+            for(let i2 = 0; i2 < form[0 - 1]; i2++) {
+                nn[0][i1].weights.push(1); // push weights
+            }
+        }
+        // hidden layers (includes output layer)
+        for(let i1 = 1; i1 < form.length; i1++) {
             nn.push([]); // push layers
             nn[i1].push([]); // push output array
-                for(let i2 = 1; i2 < form[i1] + 1; i2++) {
-                    nn[i1].push({weights: [], bias: 0}); // push neurons
-                    for(let i3 = 0; i3 < form[i1 - 1]; i3++) {
-                        nn[i1][i2].weights.push(1); // push weights
-                    }
+            for(let i2 = 1; i2 < form[i1] + 1; i2++) {
+                nn[i1].push({weights: [], bias: 0}); // push neurons
+                for(let i3 = 0; i3 < form[i1 - 1]; i3++) {
+                    nn[i1][i2].weights.push(0); // push weights
                 }
+            }
         }
     },
     run: (input) => {
