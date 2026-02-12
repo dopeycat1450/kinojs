@@ -53,6 +53,21 @@ export default {
         } else {
             nn[t.layer][t.neuron].weights[t.bweight] += weigh;
         }
+        if(t.bweight == nn[t.layer][t.neuron].weights.length - 1) {
+            if(t.neuron == nn[t.layer].length - 1) { // try minus 2 if don't work
+                if(t.layer == nn.length - 1) {
+                    t.layer = 1; // layer set to one because input layer doesn't need training
+                } else {
+                    t.layer += 1;
+                }
+                t.neuron = 1; // neuron set to one because output array is [0]
+            } else {
+                t.neuron += 1;
+            }
+            t.bweight = -1; // -1 because -1 means bias
+        } else {
+            t.bweight += 1;
+        }
     },
     reward: (amount) => {
         t.prevrewa = t.rewa;
